@@ -117,7 +117,7 @@ const AddStepPlaceholder = ({ addNode }) => {
   return (
     <div
       ref={drop}
-      className={`flex items-center justify-center h-14 w-44 border-dashed border-2 rounded mb-4 text-sm transition ${
+      className={`flex items-center justify-center h-14 w-44 border-dashed border-2 rounded text-sm transition ${
         isOver && canDrop
           ? 'border-indigo-500 bg-indigo-50'
           : 'border-gray-300 bg-transparent'
@@ -228,17 +228,20 @@ const FlowBuilder = () => {
                       isSelected={selected === n.id}
                     />
                   </div>
-                  {idx < nodes.length - 1 && <Connector />}
+                  {idx < nodes.length && <Connector />}{' '}
+                  {/* Render connector after each node */}
                 </div>
               ))}
 
-              {/* Add step placeholder */}
-              <div className='w-full mb-4 flex justify-center'>
+              {/* Add step placeholder with connector before it */}
+              {/* {nodes.length > 0 && <Connector />} */}
+              <div className='w-full flex justify-center'>
                 <AddStepPlaceholder addNode={addNode} />
               </div>
 
-              {/* Exit node */}
-              <div className='mt-2'>
+              {/* Exit node with connector before it */}
+              <Connector />
+              <div>
                 <div className='p-3 bg-white rounded shadow-md w-44 text-xs text-center'>
                   Exit
                 </div>
